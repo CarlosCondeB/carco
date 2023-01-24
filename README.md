@@ -1,3 +1,3 @@
 # Projects repository
 
-En este repositorio encontrarás proyectos que he desarrollado con objetivos académicos o por hobbie, espero que te srivan de algo.
+In this repository you will find academic or hobbie projects that I've developed, hope they help you.
