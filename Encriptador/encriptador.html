@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador Alura</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/encriptador.css">
+</head>
+
+<body>
+    <img src="assets/Logo.svg" alt="" class="logo pos-abs">
+
+    <textarea class="text-table pos-abs" name="mensaje" id="mensaje" cols="30" rows="10"
+        placeholder="Ingrese su texto aqui..."></textarea>
+
+    <img src="assets/Vector.svg" alt="" class="alert pos-abs">
+    <p class="p-alert pos-abs">Solo letras minusculas y sin acentos</p>
+
+    <button class="btn1 pos-abs" id="encriptar" onclick="encriptar()">Encriptar</button>
+    <button class="btn2 pos-abs" id="desencriptar" onclick="desencriptar()">Desencriptar</button>
+
+    <div class="pos-abs" id="mostrar">
+        <textarea class="result" name="resultado" id="resultado" cols="30" rows="10" disabled></textarea>
+        <button class="btn3" id="copiar" onclick="copiar()">Copiar</button>
+    </div>
+
+    <div class="ocultar pos-abs">
+        <img src="assets/Muñeco.svg" alt="" class="muñeco">
+        <p class="ocult-p1">Ningún mensaje fue encontrado</p>
+        <p class="ocult-p2">Ingresa el texto que desees encriptar o desencriptar.</p>
+    </div>
+
+    <script>
+        function ocultar(mensaje) {
+            if (mensaje == "") {
+                document.getElementById("mostrar").style.zIndex = -1;
+                return true;
+            }
+            else {
+                document.getElementById("mostrar").style.zIndex = 1;
+                return false;
+            }
+        }
+
+        function encriptar() {
+            let mensaje = document.getElementById("mensaje").value;
+            let resultado = document.getElementById("resultado");
+            let encriptado = "";
+
+            if (ocultar(mensaje)) {
+                return;
+            }
+
+            for (const letter of mensaje) {
+                switch (letter) {
+                    case "a":
+                        encriptado += "ai";
+                        break;
+                    case "e":
+                        encriptado += "enter";
+                        break;
+                    case "i":
+                        encriptado += "imes";
+                        break;
+                    case "o":
+                        encriptado += "ober";
+                        break;
+                    case "u":
+                        encriptado += "ufat";
+                        break;
+                    default:
+                        encriptado += letter;
+                        break;
+                }
+            }
+            resultado.value = encriptado;
+        }
+
+        function desencriptar() {
+            let mensaje = document.getElementById("mensaje").value;
+            let resultado = document.getElementById("resultado");
+            let desencriptado = "";
+
+            if (ocultar(mensaje)) {
+                return;
+            }
+
+            for (let index = 0; index < mensaje.length; index++) {
+                switch (mensaje[index]) {
+                    case "a":
+                        desencriptado += "a";
+                        index += 1;
+                        break;
+                    case "e":
+                        desencriptado += "e";
+                        index += 4;
+                        break;
+                    case "i":
+                        desencriptado += "i";
+                        index += 3;
+                        break;
+                    case "o":
+                        desencriptado += "o";
+                        index += 3;
+                        break;
+                    case "u":
+                        desencriptado += "u";
+                        index += 3;
+                        break;
+                    default:
+                        desencriptado += mensaje[index];
+                        break;
+                }
+                console.log(desencriptado);
+            }
+            resultado.value = desencriptado;
+        }
+
+        function copiar() {
+            let resultado = document.getElementById("resultado");
+            resultado.disabled = false;
+            resultado.select();
+            document.execCommand('copy');
+            alert("Texto copiado");
+            resultado.disabled = true;
+        }
+
+        /*let boton1 = document.getElementById("encriptar");
+        let boton2 = document.getElementById("desencriptar");
+        let boton3 = document.getElementById("copiar");*/
+    </script>
+
+</body>
+
+</html>
